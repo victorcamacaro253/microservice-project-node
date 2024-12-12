@@ -1,10 +1,7 @@
 import express,{json} from 'express'
 import cors from 'cors'
 import logger from './utils/logger.js'
-import userRoutes from './controllers/userController.js';
-import productRoutes from './controllers/productController.js';
-import purchaseRoutes from './controllers/purchaseController.js';
-
+import routes from './routes/index.js'
 
 const app = express()
 
@@ -14,9 +11,8 @@ app.use(cors())
 app.use(json())
 
 // Rutas
-app.use('/users', userRoutes);
-app.use('/products', productRoutes);
-app.use('/purchases', purchaseRoutes);
+app.use(routes);
+
 
 app.get('/',(req,res)=>{
     res.send('Api Gateway funcionando')
