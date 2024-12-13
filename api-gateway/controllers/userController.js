@@ -74,16 +74,18 @@ static async deleteUser(req, res) {
  }
 };
 
-static async login (res,req){
+static async login (req,res){
     try {
-        const login = Userservice.login(req.body)
+        const login = await Userservice.login(req.body)
         if (!login) {
             return res.status(401).json({ error: 'Invalid credencials' });
             }
             res.json(login)
         
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Server Error' });
+        
 
     }
 }

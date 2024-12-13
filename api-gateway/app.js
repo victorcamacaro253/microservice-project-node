@@ -3,10 +3,14 @@ import cors from 'cors'
 import logger from './utils/logger.js'
 import routes from './routes/index.js'
 import limiter from './middleware/rateLimit.js'
+import morgan from 'morgan'
+
 const app = express()
 
 
 app.use(cors())
+
+app.use(morgan())
 
 app.use(json())
 

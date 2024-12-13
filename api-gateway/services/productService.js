@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config(); // Asegúrate de instalar dotenv con `npm install dotenv`
 
-const productServiceUrl = process.env.productServiceUrl; // URL del servicio de productos
+const productServiceUrl = process.env.PRODUCTSERVICEURL; // URL del servicio de productos
 
 class productService{
 
@@ -20,9 +20,10 @@ class productService{
 
    
 
-static async getProductsById(productId){
+static async getProductById(productId){
     try {
-        const response = await axios.get(`${productServiceUrl}/products/:${productId}`);
+        const response = await axios.get(`${productServiceUrl}/products/${productId}`);
+        console.log(response)
         return response.data;
     } catch (error) {
         throw new Error(`Error fetching products: ${error.response ? error.response.data : error.message}`);

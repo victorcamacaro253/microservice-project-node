@@ -8,8 +8,8 @@ import aunthenticatenToken from '../middleware/authenticationToken.js'
 
 const router = Router()
 
-router.use('/users',aunthenticatenToken, user)
-router.use('/products',aunthenticatenToken, product)
+router.use('/users', user)
+router.use('/products', product)
 router.use('/purchases', aunthenticatenToken,purchase)
 router.use('/public',Public)
 
