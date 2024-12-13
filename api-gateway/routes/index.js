@@ -10,7 +10,7 @@ const router = Router()
 
 router.use('/users', user)
 router.use('/products', product)
-router.use('/purchases', aunthenticatenToken,purchase)
+router.use('/purchases',purchase)
 router.use('/public',Public)
 
 

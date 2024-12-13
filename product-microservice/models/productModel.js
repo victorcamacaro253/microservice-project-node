@@ -12,11 +12,11 @@ class productModel {
         return results;
     }
 
-   static async existingProduct(nombre_producto) {
+   static async existingProduct(productName) {
         try {
             const results = await query(
                 'SELECT nombre_producto FROM productos WHERE nombre_producto = ?',
-                [nombre_producto]
+                [productName]
             );
             
             // Si el arreglo `results` contiene al menos un resultado, retorna `true`, si no, retorna `false`
@@ -40,6 +40,27 @@ class productModel {
         return result.affectedRows;
     }
     
+    static async getProductStock(id_producto){
+        const [result] = await query('SELECT stock FROM productos WHERE id_producto = ?',[id_producto]);
+        return result.stock;
+    
+    }
+
+    
+    static async updateProductStock(newStock,id_producto){
+    const results = await query('UPDATE productos SET stock =  ? WHERE id_producto=?',[newStock,id_producto]);
+    return results;
+   }
+
+   
+   static async updateTopSelling (id_producto,quantity){
+    const SQL = ` Update  productos set vendido = vendido +  ? WHERE id_producto = ?`;
+
+    const results = await query(SQL,[quantity,id_producto]);
+     return results;
+        
+}
+
 }
 
 export default productModel

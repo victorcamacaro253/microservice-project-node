@@ -1,5 +1,4 @@
-import purchaseService from '../services/userService.js'
-
+import purchaseService from "../services/purchaseService.js";
 class Purchase{
 
     
@@ -7,12 +6,12 @@ static  async getPurchases(req, res){
    
    
     try{
-        const purchases = await purchaseService.getAllProducts();
+        const purchases = await purchaseService.getAllPurchases();
 
         res.json(purchases)
 
-    }catch(err){
-    
+    }catch(error){
+    console.log(error)
         res.status(500).json({ error: 'Server Error' });
     }
 };

@@ -108,6 +108,45 @@ class productController {
       }
     }
 
+
+    static async getProductStock(req,res){
+      const {id}= req.params
+      try{
+        const productStock = await productModel.getProductStock(id)
+        console.log(productStock)
+        res.json(productStock)
+        }catch(error){
+          console.log(error)
+          res.status(500).json({error:'Error interno del servidor'})
+          }
+
+    }
+
+    static async updateProductStock(req,res){
+      const {id} = req.params
+      const {newStock} = req.body
+      try{
+        const productStock = await productModel.updateProductStock(id,newStock)
+        console.log('stock del producto',productStock)
+        res.json(productStock)
+        }catch(error){
+          console.log(error)
+          res.status(500).json({error:'Error interno del servidor'})
+          }
+
+    }
+
+    static async updateTopSelling(req,res){
+      const {id} = req.params
+      const {cantidad} = req.body
+      try{
+        const topSelling = await productModel.updateTopSelling(id,cantidad)
+        res.json(topSelling)
+    }catch(error){
+      console.log(error)
+      res.status(500).json({error:'Error interno del servidor'})
+    }
+  }
 }
     
 export default productController

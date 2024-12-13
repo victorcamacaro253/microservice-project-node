@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 
   // Manejo de errores global
 app.use((err, req, res, next) => {
-    logger.error(err);
+  
     res.status(500).json({ error: 'Error en el servidor' });
   });
   
